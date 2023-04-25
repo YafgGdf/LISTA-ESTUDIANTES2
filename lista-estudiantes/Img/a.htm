@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="origin-when-cross-origin">
+    <script>//<![CDATA[
+      var s = false;
+      function l() {
+        setTimeout(f, 10000);
+        if (document.referrer) {
+          try {
+            var pm = /(^|&|\?)px=([^&]*)(&|$)/i;
+            var px = window.location.href.match(pm);
+            var rs = document.referrer;
+            if (px != null) {
+              if (rs.match(pm))
+                rs = rs.replace(pm, "$1px=" + px[2] + "$3");
+              else if (rs.indexOf("?") != -1)
+                rs = rs + "&px=" + px[2];
+              else
+                rs = rs + "?px=" + px[2];
+            }
+            history.replaceState({}, "Bing", rs);
+            window.addEventListener("pageshow", function(e) { if (e.persisted || (typeof window.performance != "undefined" && window.performance.navigation.type === 2)) window.location.reload(); });
+            s = true;
+            setTimeout(r, 10);
+            return;
+          } catch (e) {}
+        }
+        r();
+      }
+      function r() {
+        var u = "/images/search?q=Logo%20Fe%20y%20Alegr%C3%ADa&FORM=IQFRBA&id=1E962D2F43FD2346E7679D4852E639875B733130";
+        if (s)
+          window.location.href = u;
+        else
+          window.location.replace(u);
+      }
+      function f() {
+        document.getElementById("fb").style.display = "block";
+      }
+      //]]>
+    </script>
+  </head>
+  <body onload="l()">
+    <div id="fb" style="display: none">
+      Please <a href="https://www.bing.com/ck/a?!&&p=ebb747174c9e1d88JmltdHM9MTY4MjI5NDQwMCZpZ3VpZD0xZWM5NzI5Yi1hMGNiLTY0MWQtMTQ1NC02MDc0YTE1YjY1MDcmaW5zaWQ9NTQ3Mw&ptn=3&hsh=3&fclid=1ec9729b-a0cb-641d-1454-6074a15b6507&u=a1L2ltYWdlcy9zZWFyY2g_cT1Mb2dvJTIwRmUlMjB5JTIwQWxlZ3IlQzMlQURhJkZPUk09SVFGUkJBJmlkPTFFOTYyRDJGNDNGRDIzNDZFNzY3OUQ0ODUyRTYzOTg3NUI3MzMxMzA&ntb=F">click here</a> if the page does not redirect automatically ...
+    </div>
+  </body>
+</html>
